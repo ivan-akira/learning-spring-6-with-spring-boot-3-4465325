@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
@@ -16,7 +17,8 @@ import java.sql.Date;
 @ToString
 public class Reservation {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reservations_seq_generator")
+  @SequenceGenerator(name = "reservations_seq_generator", sequenceName = "reservations_seq", initialValue = 2)
   @Column(name="reservation_id")
   private long id;
   @Column(name="room_id")
